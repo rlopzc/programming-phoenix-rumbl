@@ -1,0 +1,14 @@
+<h1>Mostrando Usuarios</h1>
+
+<table class="table table-bordered">
+  <%= for user <- @users do %>
+  <tr>
+    <td>
+      <b><%= first_name(user) %></b> (<%= user.id %>)
+    </td>
+    <td>
+      <%= link "Ver", to: user_path(@conn, :show, user.id)%>
+    </td>
+  </tr>
+  <% end %>
+</table>
