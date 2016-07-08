@@ -1,5 +1,7 @@
 defmodule Rumbl.Auth do
   import Plug.Conn
+  import Phoenix.Controller
+  alias Rumbl.Router.Helpers
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)
@@ -35,6 +37,18 @@ defmodule Rumbl.Auth do
   end
 
   def logout(conn) do
-    configure_session(conn, drop: true) 
+    configure_session(conn, drop: true)
+  end
+
+  def authenticate_user(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error,
+        "Necesitas ingresar al sistema para tener acceso a esta página")
+      |> redirect(to: Helpers.page_path(conn, :index))
+      |> halt()
+    end
   end
 end
