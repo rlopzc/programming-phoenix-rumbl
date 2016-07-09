@@ -21,3 +21,5 @@
   </div>
   <%= submit "Crear usuario", class: "btn btn-primary" %>
 <% end %>
+
+<%= link "Back", to: user_path(@conn, :index) %>
