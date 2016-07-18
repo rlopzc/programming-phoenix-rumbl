@@ -1,3 +1,4 @@
+
 defmodule Rumbl.UserSocket do
   use Phoenix.Socket
 
