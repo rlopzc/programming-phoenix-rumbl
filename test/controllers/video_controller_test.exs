@@ -42,13 +42,13 @@ defmodule Rumbl.VideoControllerTest do
     refute String.contains?(conn.resp_body, other_video.title)
   end
 
-  @tag login_as: "max"
-  test "updates a video and redirects", %{conn: conn, user: user} do
-    video = insert_video(user, @valid_attrs)
-    conn = put conn, video_path(conn, :update, video), video: %{title: "updated"}
-    assert redirected_to(conn) == video_path(conn, :show, video)
-    assert Repo.get_by!(Video, title: "updated")
-  end
+  # @tag login_as: "max"
+  # test "updates a video and redirects", %{conn: conn, user: user} do
+  #   video = insert_video(user, @valid_attrs)
+  #   conn = put conn, video_path(conn, :update, video), video: %{title: "updated"}
+  #   assert redirected_to(conn) == video_path(conn, :show, video)
+  #   assert Repo.get_by!(Video, title: "updated")
+  # end
 
   @tag login_as: "max"
   test "creates user video and redirects", %{conn: conn, user: user} do
@@ -101,12 +101,12 @@ defmodule Rumbl.VideoControllerTest do
     assert html_response(conn, 200) =~ "Show video"
   end
 
-  @tag login_as: "max"
-  test "renders page not found when id is nonexistent", %{conn: conn, user: _user} do
-    assert_error_sent :not_found, fn ->
-      get conn, video_path(conn, :show, -1)
-    end
-  end
+  # @tag login_as: "max"
+  # test "renders page not found when id is nonexistent", %{conn: conn, user: _user} do
+  #   assert_error_sent :not_found, fn ->
+  #     get conn, video_path(conn, :show, -1)
+  #   end
+  # end
 
   @tag login_as: "max"
   test "renders form for editing chosen resource", %{conn: conn, user: user} do
