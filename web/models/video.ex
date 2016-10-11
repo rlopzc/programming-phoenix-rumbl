@@ -9,7 +9,7 @@ defmodule Rumbl.Video do
     field :slug, :string
     belongs_to :user, Rumbl.User
     belongs_to :category, Rumbl.Category
-    has_many :annotations, Rumbl.Annotation
+    has_many :annotations, Rumbl.Annotation, on_delete: :delete_all
 
     timestamps()
   end
