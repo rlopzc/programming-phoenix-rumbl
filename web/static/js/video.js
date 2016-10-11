@@ -29,6 +29,13 @@ let Video = {
             msgInput.value = ""
         })
 
+        msgInput.addEventListener("keyup", event => {
+          event.preventDefault
+          if (event.keyCode == 13) {
+            postButton.click()
+          }
+        })
+
         vidChannel.on("new_annotation", (resp) => {
             vidChannel.params.last_seen_id = resp.id
             this.renderAnnotation(msgContainer, resp)
